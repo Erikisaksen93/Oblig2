@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Test Suite</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.11.3.css">
+  </head>
+  <body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="https://code.jquery.com/qunit/qunit-2.11.3.js"></script>
+    <script src="controller.js"></script>
+
+    <script>
+
+      // model
+      let numbers;
+      let chosenBar;
+      let inputValue;
+      let enableBar;
+      let stroke;
+      let bar;
+      // view - dummyversjon
+
+      function show() { }
+
+
+        QUnit.test("Check to see if bar gets deleted", function (assert) {
+            numbers = [3, 4, 6, 3, 2]
+            chosenBar = 1;
+            removeBar();
+            let actual = numbers;
+            let expected = [4, 6, 3, 2]
+            assert.deepEqual(actual, expected);
+        });
+
+        QUnit.test("Check to see if bar gets changed", function (assert) {
+            numbers = [3, 4, 6, 3, 2]
+            chosenBar = 3;
+            inputValue = 3;
+            changeBar();
+            let actual = numbers;
+            let expected = [3, 4, 3, 3, 2]
+            assert.deepEqual(actual, expected);
+        });
+
+        QUnit.test("Check to see if bar gets added", function (assert) {
+            numbers = [3, 4, 6, 3, 2]
+            inputValue = 5;
+            addBar();
+            let actual = numbers;
+            let expected = [3, 4, 6, 3, 2, 5]
+            assert.deepEqual(actual, expected);
+        });
+
+        //Hvis du saver denne testen og refresher så bytter den mellom test-failed / okey. Hvorfor?
+        QUnit.test("Check to see if bar gets selected", function (assert) {
+          numbers = [3, 4, 6, 3, 2];
+          selectedBar(3);
+          let actual = chosenBar;
+          let expected = 3
+          assert.deepEqual(actual, expected);
+        });
+
+        QUnit.test("Check to see if no bar is selected", function (assert) {
+          numbers = [3, 4, 6, 3, 2];
+          selectedBar();
+          let actual = chosenBar;
+          let expected = 'none selected'
+          assert.deepEqual(actual, expected);
+          
+        });
+
+
+
+
+        
+
+
+
+
+
+
+        
+    </script>
+</body>
+</html>
